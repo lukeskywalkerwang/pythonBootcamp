@@ -1,3 +1,6 @@
+# Scrap Company Name, Phone# and Email from 230 5th Ave Directory
+# Save result in a Dictionary
+
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
@@ -11,8 +14,8 @@ companyDir = {}
 urllist = []
 companyName = []
 for tag in atag:
-    urllist.append(tag.get('href'))
-    companyName.append(tag.get('title').replace('View ', ''))
+    urllist.append(tag.get('href'))     # Get URL
+    companyName.append(tag.get('title').replace('View ', ''))       # Get Company Name
 
 # print("\n".join(urllist))
 # print("\nCompany Name")
@@ -25,6 +28,6 @@ for i in range(len(urllist)):
     phoneNum = ctag[ctag.find("Phone") + 8: ctag.find("Fax:") - 20]
     email = ctag[ctag.find("Email") + 7: ctag.find("Website") - 14]
     print(companyName[i], phoneNum, email)
-    companyDir[companyName[i]] = [phoneNum, email]
+    companyDir[companyName[i]] = [phoneNum, email]      # Build company directory
 
 print(companyDir)
